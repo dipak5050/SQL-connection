@@ -141,8 +141,11 @@ namespace SQL_connection
             string QueryslectproductType = "select * from ProductType";
             con.Open();
             cmd = new SqlCommand(QueryslectproductType, con);
-            int rowaffected = cmd.ExecuteNonQuery();
-            Console.WriteLine(rowaffected);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Console.WriteLine("ProductTypeId="  +dr["PTid"]+  "ProductType="  +dr["PType"]+  "CreatedOn"  +dr["CreatedOn"]);
+            }
             con.Close();
 
             // string Queryslectproduct = "productTypepro";
@@ -297,8 +300,13 @@ namespace SQL_connection
             string QueryslectproductType = "select * from ProductName";
             con.Open();
             cmd = new SqlCommand(QueryslectproductType, con);
-            int rowaffected = cmd.ExecuteNonQuery();
-            Console.WriteLine(rowaffected);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Console.WriteLine("ProductNameId="  +dr["PNid"]+  "ProductNam="   +dr["PName"]+
+                    "ProductTypeId="  +dr["PTid"]+  "ProductRs="  +dr["PRS"]+  "stock="  +dr["Stock"]+  
+                    "CretedOn="  +dr["CreatedOn"]);
+            }
             con.Close();
 
             //SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
@@ -425,9 +433,13 @@ namespace SQL_connection
             //string SelectQuery = "select * from total";
             //con.Open();
             //cmd = new SqlCommand(SelectQuery, con);
-            //int rowaffected = cmd.ExecuteNonQuery();
-            //Console.WriteLine(rowaffected);
-            //con.Close();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            Console.WriteLine("BillNo="  +dr["BillNo"]+  "ClidentId="  +dr["Cid"]+ 
+            "ProductTypeID="  +dr["PTid"]+  "ProductNameID="  +dr["PNid"]+  "Quntity="  +dr["Quantity"]+ 
+            "CretedOn="  +dr["CretedOn"]);
+            con.Close();
+
         }
     }
     class buy
@@ -478,8 +490,11 @@ namespace SQL_connection
             string QueryselectBuy = "select * from buy";
             con.Open();
             cmd = new SqlCommand(QueryselectBuy, con);
-            int rowaffected = cmd.ExecuteNonQuery();
-            Console.WriteLine(rowaffected);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Console.WriteLine("ProductId="  +dr["productid"]+  "ProductName="  +dr["producname"]+  "producttype="  +dr["producttype"]+  "ProductRS="  +dr["productrs"]);
+            }
             con.Close();
         }
     }
@@ -493,8 +508,11 @@ namespace SQL_connection
             string Queryselectadmin = "select * from admin";
             con.Open();
             cmd = new SqlCommand(Queryselectadmin, con);
-            int rowaffected = cmd.ExecuteNonQuery();
-            Console.WriteLine(rowaffected);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while(dr.Read())
+            {
+                Console.WriteLine("id="  +dr["Adminid"]  +"namw="  +dr["Adminname"]+  "gallo="  +dr["Gallo"]+  "CreatedOn="  +dr["createdon"]);
+            }
             con.Close();
         }
         public void AdimnInsert()
